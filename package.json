@@ -1,0 +1,16 @@
+{
+  "name": "corekeepertools",
+  "version": "1.0.0",
+  "description": "tools for Core Keeper",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Randy Panopio",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "gulp": "^4.0.2",
+    "remixicon": "^2.5.0"
+  }
+}
