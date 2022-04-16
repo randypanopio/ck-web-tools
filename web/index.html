@@ -30,18 +30,31 @@
 <body id="page-top">
 
   <div class="d-flex justify-content-center">
-    <div class=”pixel-gallery”>
-      
-    </div>
+    <button type="submit" onclick="renderHDGrid()">Draw</button>
+    <button type="submit" onclick="test()">Test</button>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <img id="prev" src ="images/full-tiles/dirt_ground.png"/>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <canvas width="100%" height="100%" class="image-canvas" id="hd-canvas"></canvas>
+    
+    <table id ="hdCanvas"></table>
+  </div>
+  
+  <div class="d-flex justify-content-center">
+    <span>Hint: if you can see your uploaded image above, then you can convert</span>
   </div>
 
 
 
   <!-- Footer -->
   <footer>
-    <div class="container text-center ">
+    <div class="container text-center">
       <div class="site-footer-links">
-        <i class="ri-open-source-fill"></i> Open Source @ <a href="#">Github <i class="ri-github-fill"></i></a> 
+        <a href="#"><i class="ri-open-source-fill"></i></a> <a href="#"><i class="ri-at-fill"></i></a> <a href="#"><i class="ri-github-fill"></i></a> 
       </div>
     </div>
   </footer>

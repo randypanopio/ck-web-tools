@@ -1,3 +1,11 @@
 img {
-    background-color: #333;
+    /* background-color: #333; */
+}
+
+body {
+    background-color: #c5ffe2;
+}
+
+.image-canvas {
+    background-color: white;
 }
