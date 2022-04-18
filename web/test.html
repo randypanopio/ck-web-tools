@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <link href="css/style.css" rel="stylesheet">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/caman.full.min.js"></script>
+    </head>
+    <body>
+        <img id="myimage" alt="Image go here" />
+        <form>
+            <input type="file" id="fileinput" />
+        </form>
+    </body>
+    <script>
+        $("#fileinput").change(function(evt) {
+            var image = evt.target.files[0];
+            $("#myimage").attr("src", URL.createObjectURL(image));
+            processImage();
+        });
+
+        function processImage() {
+            Caman("#myimage", function() {
+                // Perform your effects here
+            });
+        }
+    </script>
+</html>
