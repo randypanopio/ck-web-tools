@@ -1,11 +1,16 @@
-img {
-    /* background-color: #333; */
-}
 
 body {
     background-color: #c5ffe2;
 }
 
 .image-canvas {
-    background-color: white;
+    background-color: #888;
+    /* position:absolute;
+    width:100%;
+    height:100%;
+    top:0px; */
+}
+
+.canvas-container {
+    position: relative;
 }
