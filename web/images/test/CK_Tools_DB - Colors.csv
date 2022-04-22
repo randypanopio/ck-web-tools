@@ -1,0 +1,69 @@
+GUID,Name,RGB,Category
+0,Dirt Wall,"[96, 73, 38]",Wall
+1,Turf Wall,"[71, 104, 81]",Wall
+2,Sand Wall,"[172, 143, 59]",Wall
+3,Clay Wall,"[193, 99, 53]",Wall
+4,Stone Wall,"[73, 104, 125]",Wall
+5,Larva Hive Wall,"[163, 96, 83]",Wall
+6,Grass Wall,"[22, 131, 28]",Wall
+7,Mold Wall,"[90, 156, 186]",Wall
+8,Wood Wall,"[148, 105, 50]",Wall
+9,Stone Bricks Wall,"[106, 108, 114]",Wall
+10,Scarlet Wall,"[144, 38, 22]",Wall
+11,Paintable Wall - Unpainted,"[154, 165, 212]",Wall
+12,Paintable Wall - Yellow,"[212, 194, 42]",Wall
+13,Paintable Wall - Red,"[187, 13, 13]",Wall
+14,Paintable Wall - Green,"[64, 169, 13]",Wall
+15,Paintable Wall - Blue,"[28, 93, 216]",Wall
+16,Paintable Wall - White,"[157, 180, 203]",Wall
+17,Paintable Wall - Black,"[61, 61, 61]",Wall
+18,Paintable Wall - Purple,"[109, 50, 137]",Wall
+19,Paintable Wall - Brown,"[124, 59, 28]",Wall
+20,Dirt Ground,"[127, 95, 50]",Ground
+21,Turf Ground,"[86, 128, 99]",Ground
+22,Sand Ground,"[212, 185, 90]",Ground
+23,Clay Ground,"[232, 139, 105]",Ground
+24,Stone Ground,"[104, 131, 151]",Ground
+25,Larva Hive Ground,"[199, 117, 99]",Ground
+26,Grass Ground,"[61, 155, 64]",Ground
+27,Mold Ground,"[108, 188, 224]",Ground
+28,Wood Bridge,"[140, 88, 38]",Ground
+29,Stone Bridge,"[124, 117, 108]",Ground
+30,Scarlet Bridge,"[168, 28, 46]",Ground
+31,Wood Floor,"[199, 148, 79]",Ground Decoration
+32,Stone Floor,"[129, 132, 140]",Ground Decoration
+33,Scarlet Floor,"[178, 53, 38]",Ground Decoration
+34,Woven Mat,"[59, 139, 64]",Ground Decoration
+35,Paintable Floor - Unpainted,"[174, 189, 241]",Ground Decoration
+36,Paintable Floor - Yellow,"[255, 232, 46]",Ground Decoration
+37,Paintable Floor - Red,"[223, 0, 0]",Ground Decoration
+38,Paintable Floor - Green,"[85, 182, 38]",Ground Decoration
+39,Paintable Floor - Blue,"[42, 108, 228]",Ground Decoration
+40,Paintable Floor - White,"[178, 206, 233]",Ground Decoration
+41,Paintable Floor - Black,"[75, 85, 85]",Ground Decoration
+42,Paintable Floor - Purple,"[139, 79, 167]",Ground Decoration
+43,Paintable Floor - Brown,"[151, 75, 38]",Ground Decoration
+44,Caveling Floor Tile / Dark Caveling Floor Tile,"[130, 130, 130]",Ground Decoration
+45,Scarlet Fence / Scarlet Fence Gate,"[128, 34, 46]",Ground Decoration
+46,Rug,"[124, 71, 124]",Ground Decoration
+47,Stone Fence / Stone Fence Gate,"[96, 91, 85]",Ground Decoration
+48,Wood Fence / Wood Fence Gate,"[112, 73, 34]",Ground Decoration
+49,Rail,"[122, 122, 122]",Ground Decoration
+50,Electrical Wire,"[90, 79, 73]",Ground Decoration
+51,Conveyor Belt,"[104, 127, 174]",Ground Decoration
+52,Ancient Crate,"[77, 168, 202]",Ground Decoration
+53,Flower Vessel,"[205, 189, 50]",Ground Decoration
+54,Mold Vessel,"[229, 229, 229]",Ground Decoration
+55,Wooden Crate,"[114, 61, 13]",Ground Decoration
+56,Ground Acid Slime,"[193, 170, 34]",Ground Decoration
+57,Ground Slime,"[217, 98, 22]",Ground Decoration
+58,Ground Poison Slime,"[184, 86, 165]",Ground Decoration
+59,Chrysalis,"[252, 166, 148]",Ground Decoration
+60,Empty Ground,"[28, 28, 28]",Empty Ground
+61,Water,"[28, 61, 129]",Empty Ground
+62,Mold Water,"[61, 85, 135]",Empty Ground
+63,Hive Water,"[117, 104, 50]",Empty Ground
+64,Tilled Dirt Ground,"[180, 127, 73]",Farm Ground
+66,Tilled Grass Ground,"[13, 115, 42]",Farm Ground
+66,Tilled Dirt Ground Watered,"[141, 102, 61]",Farm Ground
+66,Tilled Grass Ground Watered,"[28, 93, 46]",Farm Ground

@@ -1,0 +1,750 @@
+[
+    {
+      "GUID": 0,
+      "Name": "Dirt Wall",
+      "RGB": "(96, 73, 38)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 1,
+      "Name": "Turf Wall",
+      "RGB": "(71, 104, 81)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 2,
+      "Name": "Sand Wall",
+      "RGB": "(172, 143, 59)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 3,
+      "Name": "Clay Wall",
+      "RGB": "(193, 99, 53)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 4,
+      "Name": "Stone Wall",
+      "RGB": "(73, 104, 125)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 5,
+      "Name": "Larva Hive Wall",
+      "RGB": "(163, 96, 83)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 6,
+      "Name": "Grass Wall",
+      "RGB": "(22, 131, 28)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 7,
+      "Name": "Mold Wall",
+      "RGB": "(90, 156, 186)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 8,
+      "Name": "Wood Wall",
+      "RGB": "(148, 105, 50)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 9,
+      "Name": "Stone Bricks Wall",
+      "RGB": "(106, 108, 114)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 10,
+      "Name": "Scarlet Wall",
+      "RGB": "(144, 38, 22)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 11,
+      "Name": "Paintable Wall - Unpainted",
+      "RGB": "(154, 165, 212)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 12,
+      "Name": "Paintable Wall - Yellow",
+      "RGB": "(212, 194, 42)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 13,
+      "Name": "Paintable Wall - Red",
+      "RGB": "(187, 13, 13)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 14,
+      "Name": "Paintable Wall - Green",
+      "RGB": "(64, 169, 13)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 15,
+      "Name": "Paintable Wall - Blue",
+      "RGB": "(28, 93, 216)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 16,
+      "Name": "Paintable Wall - White",
+      "RGB": "(157, 180, 203)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 17,
+      "Name": "Paintable Wall - Black",
+      "RGB": "(61, 61, 61)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 18,
+      "Name": "Paintable Wall - Purple",
+      "RGB": "(109, 50, 137)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 19,
+      "Name": "Paintable Wall - Brown",
+      "RGB": "(124, 59, 28)",
+      "Category": "Wall",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 20,
+      "Name": "Dirt Ground",
+      "RGB": "(127, 95, 50)",
+      "Category": "Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 21,
+      "Name": "Turf Ground",
+      "RGB": "(86, 128, 99)",
+      "Category": "Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 22,
+      "Name": "Sand Ground",
+      "RGB": "(212, 185, 90)",
+      "Category": "Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 23,
+      "Name": "Clay Ground",
+      "RGB": "(232, 139, 105)",
+      "Category": "Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 24,
+      "Name": "Stone Ground",
+      "RGB": "(104, 131, 151)",
+      "Category": "Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 25,
+      "Name": "Larva Hive Ground",
+      "RGB": "(199, 117, 99)",
+      "Category": "Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 26,
+      "Name": "Grass Ground",
+      "RGB": "(61, 155, 64)",
+      "Category": "Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 27,
+      "Name": "Mold Ground",
+      "RGB": "(108, 188, 224)",
+      "Category": "Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 28,
+      "Name": "Wood Bridge",
+      "RGB": "(140, 88, 38)",
+      "Category": "Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 29,
+      "Name": "Stone Bridge",
+      "RGB": "(124, 117, 108)",
+      "Category": "Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 30,
+      "Name": "Scarlet Bridge",
+      "RGB": "(168, 28, 46)",
+      "Category": "Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 31,
+      "Name": "Wood Floor",
+      "RGB": "(199, 148, 79)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 32,
+      "Name": "Stone Floor",
+      "RGB": "(129, 132, 140)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 33,
+      "Name": "Scarlet Floor",
+      "RGB": "(178, 53, 38)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 34,
+      "Name": "Woven Mat",
+      "RGB": "(59, 139, 64)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 35,
+      "Name": "Paintable Floor - Unpainted",
+      "RGB": "(174, 189, 241)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 36,
+      "Name": "Paintable Floor - Yellow",
+      "RGB": "(255, 232, 46)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 37,
+      "Name": "Paintable Floor - Red",
+      "RGB": "(223, 0, 0)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 38,
+      "Name": "Paintable Floor - Green",
+      "RGB": "(85, 182, 38)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 39,
+      "Name": "Paintable Floor - Blue",
+      "RGB": "(42, 108, 228)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 40,
+      "Name": "Paintable Floor - White",
+      "RGB": "(178, 206, 233)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 41,
+      "Name": "Paintable Floor - Black",
+      "RGB": "(75, 85, 85)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 42,
+      "Name": "Paintable Floor - Purple",
+      "RGB": "(139, 79, 167)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 43,
+      "Name": "Paintable Floor - Brown",
+      "RGB": "(151, 75, 38)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 44,
+      "Name": "Caveling Floor Tile / Dark Caveling Floor Tile",
+      "RGB": "(130, 130, 130)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 45,
+      "Name": "Scarlet Fence / Scarlet Fence Gate",
+      "RGB": "(128, 34, 46)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 46,
+      "Name": "Rug",
+      "RGB": "(124, 71, 124)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 47,
+      "Name": "Stone Fence / Stone Fence Gate",
+      "RGB": "(96, 91, 85)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 48,
+      "Name": "Wood Fence / Wood Fence Gate",
+      "RGB": "(112, 73, 34)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 49,
+      "Name": "Rail",
+      "RGB": "(122, 122, 122)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 50,
+      "Name": "Electrical Wire",
+      "RGB": "(90, 79, 73)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 51,
+      "Name": "Conveyor Belt",
+      "RGB": "(104, 127, 174)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 52,
+      "Name": "Ancient Crate",
+      "RGB": "(77, 168, 202)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 53,
+      "Name": "Flower Vessel",
+      "RGB": "(205, 189, 50)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 54,
+      "Name": "Mold Vessel",
+      "RGB": "(229, 229, 229)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 55,
+      "Name": "Wooden Crate",
+      "RGB": "(114, 61, 13)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 56,
+      "Name": "Ground Acid Slime",
+      "RGB": "(193, 170, 34)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 57,
+      "Name": "Ground Slime",
+      "RGB": "(217, 98, 22)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 58,
+      "Name": "Ground Poison Slime",
+      "RGB": "(184, 86, 165)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 59,
+      "Name": "Chrysalis",
+      "RGB": "(252, 166, 148)",
+      "Category": "Ground Decoration",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 60,
+      "Name": "Empty Ground",
+      "RGB": "(28, 28, 28)",
+      "Category": "Empty Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 61,
+      "Name": "Water",
+      "RGB": "(28, 61, 129)",
+      "Category": "Empty Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 62,
+      "Name": "Mold Water",
+      "RGB": "(61, 85, 135)",
+      "Category": "Empty Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 63,
+      "Name": "Hive Water",
+      "RGB": "(117, 104, 50)",
+      "Category": "Empty Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 64,
+      "Name": "Tilled Dirt Ground",
+      "RGB": "(180, 127, 73)",
+      "Category": "Farm Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 66,
+      "Name": "Tilled Grass Ground",
+      "RGB": "(13, 115, 42)",
+      "Category": "Farm Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 66,
+      "Name": "Tilled Dirt Ground Watered",
+      "RGB": "(141, 102, 61)",
+      "Category": "Farm Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   },
+    {
+      "GUID": 66,
+      "Name": "Tilled Grass Ground Watered",
+      "RGB": "(28, 93, 46)",
+      "Category": "Farm Ground",
+      "Wiki Link": "",
+      "HSL": {
+         "HSV": ""
+      },
+      "CAM02": ""
+   }
+]
