@@ -1,6 +1,10 @@
 
 body {
-    background-color: #c5ffe2;
+    background-color: #383668;
+}
+
+* {
+    color: #FFF;
 }
 
 .image-canvas {
@@ -13,4 +17,8 @@ body {
 
 .canvas-container {
     position: relative;
+}
+
+button {
+    color: #333;
 }

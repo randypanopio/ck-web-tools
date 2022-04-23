@@ -129,4 +129,9 @@ function processImage() {
     // TODO use uri/imagedata encoding, though not sure if thats more performant than looping
     console.log("out canvas pixel dims " + outputCanvas.width / pixelSize + ", " + outputCanvas.height / pixelSize)
 }
+
+function renderPreview() {
+
+}
+
 // #endregion
