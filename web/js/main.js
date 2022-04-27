@@ -1,10 +1,16 @@
 // Written by Randy Panopio 
 // import { getColorDict } from './modules/colordb.js'
 
+// NOTE
+// so I could convert the db to override it to have keys based on current selected colorspace. EG key would be rgba
+// this means when doing  color tone mapping, we have an rgb/color value and use that key to lookup which image to render on preview cells
+
 // #region Globals
-var colorDBCache = null;
-var selectedColors = [];
-var hasValidLoadedImage = false;
+var colorDBCache = null
+var selectedColors = []
+var hasValidLoadedImage = false
+var previewCells = []
+var previewCellsDims = 25
 // #endregion
 
 // #region Initialization and Hooked Event Listeners
@@ -13,6 +19,7 @@ function Initialize() {
     console.log("Caching Color DB")
     console.log(colorDBCache)
 
+    // NOTE this should be removed when fixing deserialization
     colorDBCache.forEach(element => {
         var str = element['RGB']
         // trim check
@@ -30,12 +37,23 @@ function Initialize() {
     console.log("Caching Selected Colors (all)")
     console.log(selectedColors)
 
-    // console.log("test")
-    // console.log(JSON.parse(selectedColors))
+    // populate previewCells
+    for (var y = 0; y < previewCellsDims; y++) {
+        for (var x = 0; x < previewCellsDims; x++) {
+            let id = "cell-"+ x + "-" + y 
+            let cell = document.getElementById(id)
+            previewCells.push(cell)
+        }
+    }
+    // TODO optimize, eliminate this matrix conversion
+    // convert to 2d array
+    previewCells = convertToMatrix(previewCells, previewCellsDims)
+    console.log("preview grid cells")
+    console.log(previewCells)
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-    Initialize()
+     Initialize()
 });
 
 const imageInput = document.getElementById("image-input")
@@ -120,9 +138,17 @@ function processImage() {
 
             // map pixel based in input TODO add additional options, doing linear euclidean dist for now
             let mappedColor = getClosestValue([_r, _g, _b], selectedColors)
-            octx.fillStyle = "rgba(" + mappedColor + ", 255)"
+            let rgba = "rgba(" + mappedColor + ", 255)"
+            octx.fillStyle = rgba
             // octx.fillStyle = "rgba("+ _r + "," + _g + "," + _b +", 255)" // Math.floor(Math.random() * 256)
             octx.fillRect(x * pixelSize, y * pixelSize, 1 * pixelSize, 1 * pixelSize)
+
+            //test
+            if (x < 25 && y < 25) {
+                previewCells[y][x].style.backgroundColor = rgba
+                console.log("yaet")
+                console.log( previewCells[x][y])
+            }
         }
     }
 
@@ -131,7 +157,8 @@ function processImage() {
 }
 
 function renderPreview() {
-
+    const previewTable = document.getElementById("preview-table")
+    previewTable.style.display = "table";
 }
 
 // #endregion

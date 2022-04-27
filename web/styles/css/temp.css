@@ -22,3 +22,20 @@ body {
 button {
     color: #333;
 }
+
+tr {
+    width: 100%;
+}
+
+td {
+    height: 4%;
+    width: 4%;
+}
+
+.preview-cell {
+    width: 100%;
+    height: 100%;
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+}
