@@ -8,7 +8,12 @@
 // #region Globals
 var colorDBCache = null
 var selectedColors = []
+
+// Loaded image's processed data
 var hasValidLoadedImage = false
+var cachedData = []
+
+// Table previews
 var previewCells = []
 var previewCellsDims = 25
 // #endregion
@@ -54,7 +59,7 @@ function Initialize() {
 
 document.addEventListener("DOMContentLoaded", function(){
      Initialize()
-});
+})
 
 const imageInput = document.getElementById("image-input")
 imageInput.addEventListener("change", function () {
@@ -95,12 +100,15 @@ function processImage() {
     // get the uploaded image from the dom and draw it on a hidden canvas NOTE maybe replace the img to this canvas instead?
     const uploadedImage = document.getElementById("upload-preview")
     // CORS
-    uploadedImage.crossOrigin = "Anonymous";
-    const ictx = document.createElement('canvas').getContext('2d');
-    ictx.drawImage(uploadedImage, 0, 0);
+    uploadedImage.crossOrigin = "Anonymous"
+    const ictx = document.createElement('canvas').getContext('2d')
+    ictx.drawImage(uploadedImage, 0, 0)
     loadedImageCanvasData = ictx.getImageData(0, 0, uploadedImage.naturalWidth, uploadedImage.naturalHeight);
     console.log("Loaded Image data: ")
     console.log(loadedImageCanvasData)
+
+    let width = loadedImageCanvasData.width
+    let height = loadedImageCanvasData.height
 
     let outputCanvas = document.getElementById("output-canvas")
     let octx = outputCanvas.getContext("2d")
@@ -109,9 +117,15 @@ function processImage() {
     outputCanvas.style.height = '35%'
     
     // fit 500px width for pixel scale
-    let pixelSize = Math.trunc(2000 / loadedImageCanvasData.width)
-    outputCanvas.width = loadedImageCanvasData.width * pixelSize
-    outputCanvas.height = loadedImageCanvasData.height * pixelSize
+    let pixelSize = Math.trunc(2000 / width)
+    outputCanvas.width = width * pixelSize
+    outputCanvas.height = height * pixelSize
+
+    // reset cachedData
+    cachedData = []
+    cachedData = Array.from(Array(height), () => new Array(width))
+    console.log("========== cleared cachedData")
+    console.log(cachedData)
 
     // TODO optimize by just looping pixel data once. 
     // flatten array to rgb array
@@ -123,34 +137,34 @@ function processImage() {
     console.log(rgbArray)
     
     // convert to 2d array
-    let pixel2dArray = convertToMatrix(rgbArray, loadedImageCanvasData.width)
-    // while(rgbArray.length) pixel2dArray.push(rgbArray.splice(0, loadedImageCanvasData.width))
+    let pixel2dArray = convertToMatrix(rgbArray, width)
+    // while(rgbArray.length) pixel2dArray.push(rgbArray.splice(0, width))
     console.log("pixel2dArray")
     console.log(pixel2dArray)
 
     // iterate over 2d matrix and print each pixel after mapping
-    for (var y = 0; y < loadedImageCanvasData.height; y++) {
-        for (var x = 0; x < loadedImageCanvasData.width; x++) {
+    for (var y = 0; y < height; y++) {
+        for (var x = 0; x < width; x++) {
             let _r = pixel2dArray[y][x][0] //Math.floor(Math.random() * 256)
             let _g = pixel2dArray[y][x][1] //Math.floor(Math.random() * 256)
             let _b = pixel2dArray[y][x][2] //Math.floor(Math.random() * 256)
-            // TODO optimize by caching already mapped color values instead of doing another loop of getting closest colour
 
-            // map pixel based in input TODO add additional options, doing linear euclidean dist for now
+            // TODO optimize by caching already mapped color values instead of doing another loop of getting closest colour    
+
             let mappedColor = getClosestValue([_r, _g, _b], selectedColors)
             let rgba = "rgba(" + mappedColor + ", 255)"
             octx.fillStyle = rgba
-            // octx.fillStyle = "rgba("+ _r + "," + _g + "," + _b +", 255)" // Math.floor(Math.random() * 256)
             octx.fillRect(x * pixelSize, y * pixelSize, 1 * pixelSize, 1 * pixelSize)
 
-            //test
-            if (x < 25 && y < 25) {
-                previewCells[y][x].style.backgroundColor = rgba
-                console.log("yaet")
-                console.log( previewCells[x][y])
-            }
+            // map pixel based in input TODO add additional options, doing linear euclidean dist for now
+            let selection = colorDBCache[Math.floor(Math.random() * 68)]
+            // update cache data
+            cachedData[y][x] = selection
         }
     }
+    
+    console.log("cachedData")
+    console.log(cachedData)
 
     // TODO use uri/imagedata encoding, though not sure if thats more performant than looping
     console.log("out canvas pixel dims " + outputCanvas.width / pixelSize + ", " + outputCanvas.height / pixelSize)
@@ -158,7 +172,35 @@ function processImage() {
 
 function renderPreview() {
     const previewTable = document.getElementById("preview-table")
-    previewTable.style.display = "table";
+
+    //clear out previous chunks
+    // NOTE is this the most efficient?
+    previewCells.forEach(row => {
+        row.forEach(cell=> {
+            cell.style.backgroundColor = "transparent"
+            cell.src = "images/tiles/empty.png"
+        })
+    })
+    
+    let chunk = 1
+    // TODO write proper sol 
+    for (var y = 0; y < previewCellsDims; y++) {
+        // fuck math
+        if (y > cachedData.length - 1) break
+        for (var x = 0; x < previewCellsDims; x++) {
+            // fuck math
+            if (x > cachedData[0].length - 1) break
+            let selection = cachedData[y][x]
+            let rgba =  "rgba(" + selection['RGB'].substring(1).slice(0, -1) + ", 255)"
+            previewCells[y][x].style.backgroundColor = rgba
+            previewCells[y][x].src = selection['imageSource']
+        }
+    }
+
+    console.log("aaaa")
+    console.log("max y: " + (cachedData.length -1) + " max x: " + (cachedData[0].length - 1))
+
+    previewTable.style.display = "table"
 }
 
 // #endregion
