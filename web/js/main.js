@@ -7,7 +7,7 @@
 
 // #region Globals
 var colorDBCache = null
-var selectedColors = []
+// var selectedColors = [] // TODO build me when doing color selection feature
 
 // Loaded image's processed data
 var hasValidLoadedImage = false
@@ -20,27 +20,7 @@ var previewCellsDims = 25
 
 // #region Initialization and Hooked Event Listeners
 function Initialize() {
-    colorDBCache = getColorDict()
-    console.log("Caching Color DB")
-    console.log(colorDBCache)
-
-    // NOTE this should be removed when fixing deserialization
-    colorDBCache.forEach(element => {
-        var str = element['RGB']
-        // trim check
-        if (str.startsWith("[") || str.startsWith("(")) {
-            str = str.substring(1)
-        }
-        if (str.endsWith("]") || str.endsWith(")")) {
-            str = str.slice(0, -1)
-        }
-        
-        var n = str.split(",").map(Number)
-        selectedColors.push(n)
-    });
-
-    console.log("Caching Selected Colors (all)")
-    console.log(selectedColors)
+    colorDBCache = getColorDB()
 
     // populate previewCells
     for (var y = 0; y < previewCellsDims; y++) {
@@ -151,15 +131,13 @@ function processImage() {
 
             // TODO optimize by caching already mapped color values instead of doing another loop of getting closest colour    
 
-            let mappedColor = getClosestValue([_r, _g, _b], selectedColors)
-            let rgba = "rgba(" + mappedColor + ", 255)"
-            octx.fillStyle = rgba
-            octx.fillRect(x * pixelSize, y * pixelSize, 1 * pixelSize, 1 * pixelSize)
+            let colorSpace = "RGB"
+            let closestValue = getDBClosestValue(colorDBCache, [_r, _g, _b], colorSpace)
+            cachedData[y][x] = closestValue
 
-            // map pixel based in input TODO add additional options, doing linear euclidean dist for now
-            let selection = colorDBCache[Math.floor(Math.random() * 68)]
-            // update cache data
-            cachedData[y][x] = selection
+            // Fill in canvas preview
+            octx.fillStyle = "rgba(" + trimBrackets(closestValue[colorSpace]) + ", 255)"
+            octx.fillRect(x * pixelSize, y * pixelSize, 1 * pixelSize, 1 * pixelSize)
         }
     }
     
@@ -172,6 +150,7 @@ function processImage() {
 
 function renderPreview() {
     const previewTable = document.getElementById("preview-table")
+    const chunkInput = document.getElementById("chunk-input")
 
     //clear out previous chunks
     // NOTE is this the most efficient?
@@ -181,8 +160,15 @@ function renderPreview() {
             cell.src = "images/tiles/empty.png"
         })
     })
+
+    // Update Grid selector
+    // renderSelectionGrid(4,4)
+
+    //
+    let chunkX, chunkY = 1
+    let statX, startY = 0
     
-    let chunk = 1
+    let chunk = parseInt(chunkInput.value) // NOTE I want to replace this with a better solution
     // TODO write proper sol 
     for (var y = 0; y < previewCellsDims; y++) {
         // fuck math
@@ -191,7 +177,7 @@ function renderPreview() {
             // fuck math
             if (x > cachedData[0].length - 1) break
             let selection = cachedData[y][x]
-            let rgba =  "rgba(" + selection['RGB'].substring(1).slice(0, -1) + ", 255)"
+            let rgba =  "rgba(" + trimBrackets(selection['RGB']) + ", 255)"
             previewCells[y][x].style.backgroundColor = rgba
             previewCells[y][x].src = selection['imageSource']
         }

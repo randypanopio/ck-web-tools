@@ -1,11 +1,26 @@
 // export { getColorDict }
 
-function getColorDict (path) {
-    var json = JSON.parse(colordb)
+function getColorDB (path) {
+    var data = null;
+    if (path) {
+        data = JSON.parse(path)
+    } else {
+        data = JSON.parse(colordb)
+    } 
 
-    // TODO properly bind data types
-    return json
+    // binding data
+    data.forEach(element => {
+        // Map RGB to int array
+        var trimmedRGB = trimBrackets(element['RGB'])  
+        element['RGB'] = trimmedRGB.split(",").map(Number)
+    });
+
+    console.log("Caching Color DB")
+    console.log(data)
+    return data
 }
+
+
 
 // TODO serve and load the colordb.json file, or figure out how to get google sheets (or maybe gist instead) to return a proper json request
 

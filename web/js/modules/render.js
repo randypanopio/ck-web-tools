@@ -1,5 +1,33 @@
 // in charge of drawing DOM elements
 
+
+function renderSelectionGrid(count, width) {
+    const mainElement = document.querySelector('#navigation-grid');
+    const tableElement = document.createElement('table');
+
+    // chunk count
+    for (var i = 0; i < count; i++) {
+        if (i % width == 0){
+            
+        }
+    }
+
+
+    for (let i = 0; i < height; i++) {
+
+        const trElement = document.createElement('tr');
+        for (let x = 0; x < width; x++) {
+            let tdElement = document.createElement('td')
+            trElement.appendChild(tdElement)
+            tdElement.innerText = "hi"
+        }
+        tableElement.appendChild(trElement);
+    }
+    mainElement.innerHTML = '';
+    mainElement.appendChild(tableElement);
+}
+
+
 //storing trashed code for now lool
 
 

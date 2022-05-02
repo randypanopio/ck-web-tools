@@ -28,3 +28,49 @@ function convertToMatrix(array, width) {
     }
     return matrix;
 }
+
+function trimBrackets(input) {
+    let str = String(input)
+    if (str.startsWith("[") || str.startsWith("(")) {
+        str = str.substring(1)
+    }
+    if (str.endsWith("]") || str.endsWith(")")) {
+        str = str.slice(0, -1)
+    }
+    return str
+}
+
+/* Approach 1) process the entire color db directly
+Pros:
+- no need of remapping values, the return function can also just take in which colorspace to use
+Cons: 
+- Memory constraints? directly manipulating the db here
+
+Approach 2) pass in color dict paired with a guid so we can find it on the db again.
+// pros: data readability, you are only using what you need
+
+Cons:
+- Need to keep track of parity between the passed in list color vs the original color db (can use guids)
+- Takes longer to properly implement lol 
+*/
+// this is approach 1
+function getDBClosestValue(db, inputColor, colorSpace = "RGB"){
+    var closest = {}
+    var dist
+    for (var i = 0; i < db.length; i++) {
+        var dbColor = db[i][colorSpace]// get val from json/db
+ 
+        dist = Math.pow(dbColor[0] - inputColor[0], 2)
+        dist += Math.pow(dbColor[1] - inputColor[1], 2)
+        dist += Math.pow(dbColor[2] - inputColor[2], 2)
+        // dist = Math.sqrt(dist) // can skip this and use approximate relative distance
+
+        if (!closest.dist || closest.dist > dist) {
+            closest.dist = dist
+            closest.val = db[i]
+        }
+    }
+    return closest.val
+}
+
+// function 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,14 +13,16 @@
   <!-- <link rel="icon" type="img/favicon" href="img/favicon.png"> -->
 
   <!-- Bootstrap core CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
   <!-- Styling -->
   <link href="styles/css/main.css" rel="stylesheet">
   <link href="styles/css/temp.css" rel="stylesheet">
 
   <!-- Custom fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,600|Playfair+Display:400,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,600|Playfair+Display:400,900&display=swap"
+    rel="stylesheet">
 
   <!-- Additional Fonts, Icons, & Ligatures -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -32,743 +35,730 @@
     Core Keeper Pixel Tone Map Tool / Pixel Preview Planner
   </div>
 
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center" id="inputs">
     <input type="file" id="image-input" accept="image/png, image/jpeg">
-  </div>
-
-  <div class="d-flex justify-content-center">
-    <img style = "  image-rendering: auto;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated; width: 20%" id="upload-preview" src =""/>
-  </div>
-
-  <div class="canvas-container d-flex justify-content-center">
-    <canvas width="0" height="0" class="image-canvas" id="input-canvas"></canvas>
-  </div>
-
-  <div class="d-flex justify-content-center">
-    Hint: if you can see your uploaded image above, then you can convert
-  </div>  
-  <div class="d-flex justify-content-center">
     <button type="submit" onclick="processImage()">Process</button>
-    <button type="submit" onclick="renderPreview()">Draw Preview</button>
+    <input type="number" class="dark-text" id="chunk-input" min="1">
+    <button type="submit" onclick="renderPreview()">Draw Chunk Preview</button>
   </div>
 
-  <div class="canvas-container d-flex justify-content-center">    
+  <div class="d-flex justify-content-center">
+    Input Image
+    <img style="  image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated; width: 20%" id="upload-preview" src="" />
+  </div>
+  <div class="canvas-container d-flex justify-content-center">
+    Mapped Image
     <canvas width="0" height="0" class="image-canvas" id="output-canvas"></canvas>
   </div>
 
-  <div class="canvas-container d-flex justify-content-center">    
-    <table style ="width: 80%;" id ="navigation-grid">
-      <tr>
-
-      </tr>
-      <tr>
-      </tr>
-
-    </table>
+  <div class="canvas-container d-flex justify-content-center">
+    Tile Preview Navigation
+    <div id="navigation-grid"></div>
   </div>
 
-  <div class="canvas-container d-flex justify-content-center">   
-    <table style ="display: none; width: 80%;" id ="preview-table">
+  <div class="canvas-container d-flex justify-content-center">
+    Tile Preview
+    <table style="display: none; width: 80%;" id="preview-table">
       <tr id="preview-row-0">
-        <td><img id="cell-0-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-0" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-0" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-0" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-1">
-        <td><img id="cell-0-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-1" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-1" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-1" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-2">
-        <td><img id="cell-0-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-2" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-2" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-2" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-3">
-        <td><img id="cell-0-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-3" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-3" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-3" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-4">
-        <td><img id="cell-0-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-4" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-4" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-4" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-5">
-        <td><img id="cell-0-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-5" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-5" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-5" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-6">
-        <td><img id="cell-0-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-6" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-6" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-6" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-7">
-        <td><img id="cell-0-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-7" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-7" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-7" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-8">
-        <td><img id="cell-0-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-8" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-8" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-8" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-9">
-        <td><img id="cell-0-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-9" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-9" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-9" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-10">
-        <td><img id="cell-0-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-10" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-10" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-10" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-11">
-        <td><img id="cell-0-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-11" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-11" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-11" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-12">
-        <td><img id="cell-0-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-12" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-12" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-12" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-13">
-        <td><img id="cell-0-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-13" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-13" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-13" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-14">
-        <td><img id="cell-0-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-14" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-14" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-14" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-15">
-        <td><img id="cell-0-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-15" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-15" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-15" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-16">
-        <td><img id="cell-0-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-16" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-16" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-16" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-17">
-        <td><img id="cell-0-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-17" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-17" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-17" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-18">
-        <td><img id="cell-0-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-18" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-18" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-18" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-19">
-        <td><img id="cell-0-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-19" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-19" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-19" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-20">
-        <td><img id="cell-0-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-20" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-20" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-20" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-21">
-        <td><img id="cell-0-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-21" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-21" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-21" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-22">
-        <td><img id="cell-0-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-22" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-22" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-22" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-23">
-        <td><img id="cell-0-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-23" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-23" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-23" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
       <tr id="preview-row-24">
-        <td><img id="cell-0-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-1-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-2-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-3-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-4-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-5-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-6-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-7-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-8-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-9-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-10-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-11-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-12-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-13-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-14-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-15-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-16-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-17-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-18-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-19-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-20-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-21-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-22-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-23-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
-        <td><img id="cell-24-24" class="preview-cell" src ="images/tiles/empty.png"/></td>
+        <td><img id="cell-0-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-1-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-2-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-3-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-4-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-5-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-6-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-7-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-8-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-9-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-10-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-11-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-12-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-13-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-14-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-15-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-16-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-17-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-18-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-19-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-20-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-21-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-22-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-23-24" class="preview-cell" src="images/tiles/empty.png" /></td>
+        <td><img id="cell-24-24" class="preview-cell" src="images/tiles/empty.png" /></td>
       </tr>
 
     </table>
@@ -779,19 +769,23 @@
   <footer>
     <div class="container text-center">
       <div class="site-footer-links">
-        <a href="#"><i class="ri-open-source-fill"></i></a> <a href="#"><i class="ri-at-fill"></i></a> <a href="#"><i class="ri-github-fill"></i></a> 
+        <a href="#"><i class="ri-open-source-fill"></i></a> <a href="#"><i class="ri-at-fill"></i></a> <a href="#"><i
+            class="ri-github-fill"></i></a>
       </div>
     </div>
   </footer>
 
   <!-- Core JS Libraries - Bootstrap core JavaScript & Jquery  etc. -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
 
   <!-- Custom scripts -->
   <script src="js/main.js"></script>
   <!-- I can't figure out how to do modules so global it is -->
   <script src="js/modules/utils.js"></script>
   <script src="js/modules/colordb.js"></script>
+  <script src="js/modules/render.js"></script>
 
 </body>
 

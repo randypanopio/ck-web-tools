@@ -7,6 +7,10 @@ body {
     color: #FFF;
 }
 
+.dark-text {
+    color: #222;
+}
+
 .image-canvas {
     background-color: #888;
     /* position:absolute;
@@ -33,6 +37,7 @@ td {
 }
 
 .preview-cell {
+    padding: 8%;
     width: 100%;
     height: 100%;
     image-rendering: auto;
