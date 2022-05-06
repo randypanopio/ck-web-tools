@@ -7,7 +7,7 @@ body {
     color: #FFF;
 }
 
-.dark-text {
+.dark-text, .dark-text > * {
     color: #222;
 }
 
@@ -43,4 +43,9 @@ td {
     image-rendering: auto;
     image-rendering: crisp-edges;
     image-rendering: pixelated;
+}
+
+.align-items-center > * {
+    margin-left: 8px;
+    margin-right: 8px;
 }

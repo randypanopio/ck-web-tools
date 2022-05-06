@@ -98,8 +98,10 @@ function processImage() {
     
     // fit 500px width for pixel scale
     let pixelSize = Math.trunc(2000 / width)
-    outputCanvas.width = width * pixelSize
-    outputCanvas.height = height * pixelSize
+    let canvasPixelWidth = width * pixelSize
+    let canvasPixelHeight = height * pixelSize
+    outputCanvas.width = canvasPixelWidth
+    outputCanvas.height = canvasPixelHeight
 
     // reset cachedData
     cachedData = []
@@ -140,6 +142,12 @@ function processImage() {
             octx.fillRect(x * pixelSize, y * pixelSize, 1 * pixelSize, 1 * pixelSize)
         }
     }
+
+    //TODO also add grid lines
+    const showGridLinesDOM = document.getElementById("show-grid-lines")
+    if (showGridLinesDOM.checked) {
+        // octx.
+    }
     
     console.log("cachedData")
     console.log(cachedData)
@@ -150,7 +158,8 @@ function processImage() {
 
 function renderPreview() {
     const previewTable = document.getElementById("preview-table")
-    const chunkInput = document.getElementById("chunk-input")
+    const chunkInputX = document.getElementById("chunk-input-x")
+    const chunkInputY = document.getElementById("chunk-input-y")
 
     //clear out previous chunks
     // NOTE is this the most efficient?
@@ -165,23 +174,54 @@ function renderPreview() {
     // renderSelectionGrid(4,4)
 
     //
-    let chunkX, chunkY = 1
     let statX, startY = 0
     
-    let chunk = parseInt(chunkInput.value) // NOTE I want to replace this with a better solution
-    // TODO write proper sol 
-    for (var y = 0; y < previewCellsDims; y++) {
-        // fuck math
-        if (y > cachedData.length - 1) break
-        for (var x = 0; x < previewCellsDims; x++) {
-            // fuck math
-            if (x > cachedData[0].length - 1) break
-            let selection = cachedData[y][x]
+    let chunkX = parseInt(chunkInputX.value) - 1 // NOTE I want to replace this with a better solution
+    let chunkY = parseInt(chunkInputY.value) - 1
+
+    let iY = chunkY - 1
+    let mY = previewCellsDims * chunkY
+    let iX = chunkX - 1
+    let mX = previewCellsDims * chunkX
+    // for (let y = iY; y < mY; y++){
+    //     // fuck math
+    //     if (y > cachedData.length - 1) break
+    //     for (let x = iX; x < mX; x++) {
+    //         // fuck math
+    //         if (x > cachedData[0].length - 1) break
+    //         let selection = cachedData[y][x]
+    //         let rgba =  "rgba(" + trimBrackets(selection['RGB']) + ", 255)"
+    //         // TODO remap back down to 0-24
+    //         previewCells[y][x].style.backgroundColor = rgba
+    //         previewCells[y][x].src = selection['imageSource']
+    //     }        
+    // }
+
+    for (let y = 0, gy = chunkY * previewCellsDims; y < previewCellsDims - 1; y++, gy++) {
+        if (gy > cachedData.length - 1) { break } // stop before reaching end of last chunk
+        for (let x = 0, gx = chunkX * previewCellsDims; x < previewCellsDims - 1; x++, gx++) {
+            if (gx > cachedData[y].length - 1) { break }
+            let selection = cachedData[gy][gx]
             let rgba =  "rgba(" + trimBrackets(selection['RGB']) + ", 255)"
+            // TODO remap back down to 0-24
             previewCells[y][x].style.backgroundColor = rgba
             previewCells[y][x].src = selection['imageSource']
         }
     }
+
+    // // TODO write proper sol 
+    // for (var y = 0; y < previewCellsDims; y++) {
+    //     // fuck math
+    //     if (y > cachedData.length - 1) break
+    //     for (var x = 0; x < previewCellsDims; x++) {
+    //         // fuck math
+    //         if (x > cachedData[0].length - 1) break
+    //         let selection = cachedData[y][x]
+    //         let rgba =  "rgba(" + trimBrackets(selection['RGB']) + ", 255)"
+    //         previewCells[y][x].style.backgroundColor = rgba
+    //         previewCells[y][x].src = selection['imageSource']
+    //     }
+    // }
 
     console.log("aaaa")
     console.log("max y: " + (cachedData.length -1) + " max x: " + (cachedData[0].length - 1))

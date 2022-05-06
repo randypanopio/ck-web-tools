@@ -35,10 +35,16 @@
     Core Keeper Pixel Tone Map Tool / Pixel Preview Planner
   </div>
 
-  <div class="d-flex justify-content-center" id="inputs">
+  <div class="d-flex justify-content-center align-items-center" style="padding:0px, 5px, 0px, 5px" id="inputs">
     <input type="file" id="image-input" accept="image/png, image/jpeg">
+    <select class="dark-text" id="process-options">
+      <option value="">- Select Processing Type -</option>
+      <option value="rgb-e">RGB euclidean (Fastest)</option>
+    </select>
+    <label for ="show-grid-lines">Show Grid Lines</label><input type="checkbox" id="show-grid-lines" checked>
     <button type="submit" onclick="processImage()">Process</button>
-    <input type="number" class="dark-text" id="chunk-input" min="1">
+    <span>X: <input type="number" style="width: 2.5em;" class="dark-text" value="1" id="chunk-input-x" min="1"></span>
+    <span>Y: <input type="number" style="width: 2.5em;" class="dark-text" value="1" id="chunk-input-y" min="1"></span>
     <button type="submit" onclick="renderPreview()">Draw Chunk Preview</button>
   </div>
 
@@ -46,7 +52,7 @@
     Input Image
     <img style="  image-rendering: auto;
     image-rendering: crisp-edges;
-    image-rendering: pixelated; width: 20%" id="upload-preview" src="" />
+    image-rendering: pixelated; width: 20%" id="upload-preview" src=""/>
   </div>
   <div class="canvas-container d-flex justify-content-center">
     Mapped Image
