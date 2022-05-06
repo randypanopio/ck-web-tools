@@ -35,17 +35,21 @@
     Core Keeper Pixel Tone Map Tool / Pixel Preview Planner
   </div>
 
-  <div class="d-flex justify-content-center align-items-center" style="padding:0px, 5px, 0px, 5px" id="inputs">
+  <div class="d-flex justify-content-center align-items-center inputs" id="inputs">
     <input type="file" id="image-input" accept="image/png, image/jpeg">
-    <select class="dark-text" id="process-options">
-      <option value="">- Select Processing Type -</option>
-      <option value="rgb-e">RGB euclidean (Fastest)</option>
-    </select>
+    |
+    <span>
+      Processing Type
+      <select class="dark-text" id="process-options">
+        <option value="rgb-e">RGB Euclidean (Fast)</option>
+      </select>
+    </span>
+    |
+    <span>Grid Thickness: <input type="number" style="width: 2.5em;" class="dark-text" value="10" id="grid-thickness" min="1"></span>
+    |
     <label for ="show-grid-lines">Show Grid Lines</label><input type="checkbox" id="show-grid-lines" checked>
+    |
     <button type="submit" onclick="processImage()">Process</button>
-    <span>X: <input type="number" style="width: 2.5em;" class="dark-text" value="1" id="chunk-input-x" min="1"></span>
-    <span>Y: <input type="number" style="width: 2.5em;" class="dark-text" value="1" id="chunk-input-y" min="1"></span>
-    <button type="submit" onclick="renderPreview()">Draw Chunk Preview</button>
   </div>
 
   <div class="d-flex justify-content-center">
@@ -59,9 +63,11 @@
     <canvas width="0" height="0" class="image-canvas" id="output-canvas"></canvas>
   </div>
 
-  <div class="canvas-container d-flex justify-content-center">
-    Tile Preview Navigation
-    <div id="navigation-grid"></div>
+  <div class="d-flex justify-content-center align-items-center  inputs">
+    <span> Tile Preview Navigation</span>
+    <span>X: <input type="number" style="width: 2.5em;" class="dark-text" value="1" id="chunk-input-x" min="1"></span>
+    <span>Y: <input type="number" style="width: 2.5em;" class="dark-text" value="1" id="chunk-input-y" min="1"></span>
+    <button type="submit" onclick="renderPreview()">Draw Chunk Preview</button>
   </div>
 
   <div class="canvas-container d-flex justify-content-center">

@@ -3,6 +3,7 @@ body {
     background-color: #383668;
 }
 
+
 * {
     color: #FFF;
 }
@@ -36,6 +37,11 @@ td {
     width: 4%;
 }
 
+.inputs {
+    padding:0px, 5px, 0px, 5px
+}
+
+
 .preview-cell {
     padding: 8%;
     width: 100%;
@@ -45,7 +51,7 @@ td {
     image-rendering: pixelated;
 }
 
-.align-items-center > * {
+.inputs > * {
     margin-left: 8px;
     margin-right: 8px;
 }

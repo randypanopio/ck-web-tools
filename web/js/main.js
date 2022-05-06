@@ -132,7 +132,6 @@ function processImage() {
             let _b = pixel2dArray[y][x][2] //Math.floor(Math.random() * 256)
 
             // TODO optimize by caching already mapped color values instead of doing another loop of getting closest colour    
-
             let colorSpace = "RGB"
             let closestValue = getDBClosestValue(colorDBCache, [_r, _g, _b], colorSpace)
             cachedData[y][x] = closestValue
@@ -144,9 +143,24 @@ function processImage() {
     }
 
     //TODO also add grid lines
+    let p = 100
+    const offset = 0.5 // not even sure if this is useful
     const showGridLinesDOM = document.getElementById("show-grid-lines")
+    const gridThicknessInput = document.getElementById("grid-thickness")
     if (showGridLinesDOM.checked) {
-        // octx.
+        octx.lineWidth = parseInt(gridThicknessInput.value)
+        octx.strokeStyle = "black"
+
+        for (var x = 0; x < canvasPixelWidth; x += pixelSize * previewCellsDims) {
+            octx.moveTo(offset + x, 0)
+            octx.lineTo(offset + x, canvasPixelHeight)
+        }   
+    
+        for (var x = 0; x < canvasPixelHeight; x += pixelSize * previewCellsDims) {
+            octx.moveTo(0, offset + x)
+            octx.lineTo(canvasPixelWidth, offset + x)
+        }
+        octx.stroke();
     }
     
     console.log("cachedData")
@@ -161,71 +175,20 @@ function renderPreview() {
     const chunkInputX = document.getElementById("chunk-input-x")
     const chunkInputY = document.getElementById("chunk-input-y")
 
-    //clear out previous chunks
-    // NOTE is this the most efficient?
-    previewCells.forEach(row => {
-        row.forEach(cell=> {
-            cell.style.backgroundColor = "transparent"
-            cell.src = "images/tiles/empty.png"
-        })
-    })
-
-    // Update Grid selector
-    // renderSelectionGrid(4,4)
-
-    //
-    let statX, startY = 0
-    
-    let chunkX = parseInt(chunkInputX.value) - 1 // NOTE I want to replace this with a better solution
+    let chunkX = parseInt(chunkInputX.value) - 1
     let chunkY = parseInt(chunkInputY.value) - 1
-
-    let iY = chunkY - 1
-    let mY = previewCellsDims * chunkY
-    let iX = chunkX - 1
-    let mX = previewCellsDims * chunkX
-    // for (let y = iY; y < mY; y++){
-    //     // fuck math
-    //     if (y > cachedData.length - 1) break
-    //     for (let x = iX; x < mX; x++) {
-    //         // fuck math
-    //         if (x > cachedData[0].length - 1) break
-    //         let selection = cachedData[y][x]
-    //         let rgba =  "rgba(" + trimBrackets(selection['RGB']) + ", 255)"
-    //         // TODO remap back down to 0-24
-    //         previewCells[y][x].style.backgroundColor = rgba
-    //         previewCells[y][x].src = selection['imageSource']
-    //     }        
-    // }
-
     for (let y = 0, gy = chunkY * previewCellsDims; y < previewCellsDims - 1; y++, gy++) {
-        if (gy > cachedData.length - 1) { break } // stop before reaching end of last chunk
         for (let x = 0, gx = chunkX * previewCellsDims; x < previewCellsDims - 1; x++, gx++) {
-            if (gx > cachedData[y].length - 1) { break }
-            let selection = cachedData[gy][gx]
-            let rgba =  "rgba(" + trimBrackets(selection['RGB']) + ", 255)"
-            // TODO remap back down to 0-24
-            previewCells[y][x].style.backgroundColor = rgba
-            previewCells[y][x].src = selection['imageSource']
+            if (gy <= cachedData.length - 1 && gx <= cachedData[y].length - 1) {
+                let selection = cachedData[gy][gx]
+                previewCells[y][x].style.backgroundColor = "rgba(" + trimBrackets(selection['RGB']) + ", 255)"
+                previewCells[y][x].src = selection['imageSource']
+            } else {
+                previewCells[y][x].style.backgroundColor = "transparent"
+                previewCells[y][x].src = "images/tiles/empty.png"
+            }
         }
     }
-
-    // // TODO write proper sol 
-    // for (var y = 0; y < previewCellsDims; y++) {
-    //     // fuck math
-    //     if (y > cachedData.length - 1) break
-    //     for (var x = 0; x < previewCellsDims; x++) {
-    //         // fuck math
-    //         if (x > cachedData[0].length - 1) break
-    //         let selection = cachedData[y][x]
-    //         let rgba =  "rgba(" + trimBrackets(selection['RGB']) + ", 255)"
-    //         previewCells[y][x].style.backgroundColor = rgba
-    //         previewCells[y][x].src = selection['imageSource']
-    //     }
-    // }
-
-    console.log("aaaa")
-    console.log("max y: " + (cachedData.length -1) + " max x: " + (cachedData[0].length - 1))
-
     previewTable.style.display = "table"
 }
 
