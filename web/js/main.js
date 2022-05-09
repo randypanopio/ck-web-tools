@@ -23,6 +23,7 @@ const maxDims = 500
 
 var showImageInputs = true
 var showSelections = true
+var showCounters = true
 // #endregion
 
 // #region DOM selectors
@@ -37,9 +38,8 @@ const previewTable = document.getElementById("preview-table")
 const uploadedImage = document.getElementById("upload-preview")
 const gridSizeDOM = document.getElementById("grid-size")
 const imageInputsDOM = document.getElementById("image-inputs")
-const itemSelectionsContainerDOM = document.getElementById("item-selections-container")
 const itemSelectionsDOM = document.getElementById("item-selections")
-const itemSelectionCheckboxes = document.querySelectorAll("input[type=checkbox][name=item-selection]")
+const itemCountersDOM = document.getElementById("item-counters")
 
 // #endregion
 
@@ -165,6 +165,7 @@ function processImage() {
     // then use that arranged idexes to start splicing a copy of the colordb
     let colorIdsToExclude = []
     //NOTE I had another idea where instead of looping, you add and remove colors from the exckdue array, but this is fine
+    const itemSelectionCheckboxes = document.querySelectorAll("input[type=checkbox][name=item-selection]")
     itemSelectionCheckboxes.forEach(element => {
         if (!element.checked) {
             let guid = parseInt(element.getAttribute("guid"))
@@ -239,23 +240,6 @@ function renderPreview() {
     }
 }
 
-function toggleImages() {
-    if (showImageInputs){
-        imageInputsDOM.setAttribute("style", "display:none !important")
-    } else {
-        imageInputsDOM.setAttribute("style", "")
-    }
-    showImageInputs = !showImageInputs
-}
-
-function toggleColorSelection(){
-    if (showSelections){
-        itemSelectionsContainerDOM.setAttribute("style", "display:none !important")
-    } else {
-        itemSelectionsContainerDOM.setAttribute("style", "")
-    }
-    showSelections = !showSelections
-}
 
 function generateItemSelection () {
     // In case active db is dirtied, use cache to make sure all items are made
@@ -308,6 +292,38 @@ function getExcludedColorDB(db, exclusions) {
     console.log("spliced result")
     console.log(result)
     return result
+}
+
+
+
+
+///====  togglers
+
+function toggleImages() {
+    if (showImageInputs){
+        imageInputsDOM.setAttribute("style", "display:none !important")
+    } else {
+        imageInputsDOM.setAttribute("style", "")
+    }
+    showImageInputs = !showImageInputs
+}
+
+function toggleColorSelection(){
+    if (showSelections){
+        itemSelectionsDOM.setAttribute("style", "display:none !important")
+    } else {
+        itemSelectionsDOM.setAttribute("style", "")
+    }
+    showSelections = !showSelections
+}
+
+function toggleCounterSelection() {
+    if (showCounters){
+        itemCountersDOM.setAttribute("style", "display:none !important")
+    } else {
+        itemCountersDOM.setAttribute("style", "")
+    }
+    showCounters = !showCounters
 }
 
 // TODO

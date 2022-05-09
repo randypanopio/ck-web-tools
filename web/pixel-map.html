@@ -38,16 +38,12 @@
   <div class="d-flex justify-content-center align-items-center inputs" id="inputs">
     <input type="file" id="image-upload" accept="image/png, image/jpeg">
     |
-    <button type="submit" onclick="toggleColorSelection()">Toggle Items</button>
-    |
     <span>
       Processing Type
       <select class="dark-text" id="process-options">
         <option value="rgb-e">RGB Euclidean (Fast)</option>
       </select>
     </span>
-    |
-    <button type="submit" onclick="toggleImages()">Toggle Images</button>
     |
     <span>Grid Size: <input type="number" class="dark-text" value="25" id="grid-size" min="4" max="25"></span>
     |
@@ -59,20 +55,24 @@
   </div>
 
   <div id="item-selections-container">
-    Item Selections: 
+    <button type="submit" onclick="toggleColorSelection()">Toggle Item Selection</button> Item Selections: 
     <div id="item-selections" class="d-flex flex-wrap"></div>
     <br>
-    Required Items:
-    <div>No Image Loaded yet!</div>
+   <button type="submit" onclick="toggleCounterSelection()">Toggle Item Counters</button>  Counter of items for this build: 
+    <div id="item-counters">No Image Loaded yet!</div>
   </div>
 
+  <div id="item-selections-container">
+    <button type="submit" onclick="toggleImages()">Toggle Images</button> Input Images: 
+  </div>
   <div id="image-inputs" class="d-flex justify-content-center image-inputs-container">
-    Input Image
+    
+    Original Image:
     <img style="image-rendering: auto;
     image-rendering: crisp-edges;
     image-rendering: pixelated; width: 20%" class="viewer-image" id="upload-preview" src="images/misc/empty.png"/>
     
-    Mapped Image
+    Mapped Image:
     <canvas width="0" height="0" class="image-canvas viewer-image" id="output-canvas"></canvas>
   </div>
 
