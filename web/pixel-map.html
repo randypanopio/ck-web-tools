@@ -18,8 +18,6 @@
 
   <!-- Styling -->
   <link href="styles/css/main.css" rel="stylesheet">
-  <link href="styles/css/temp.css" rel="stylesheet">
-
   <!-- Custom fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,600|Playfair+Display:400,900&display=swap"
     rel="stylesheet">
@@ -59,7 +57,7 @@
     <div id="item-selections" class="d-flex flex-wrap"></div>
     <br>
    <button type="submit" onclick="toggleCounterSelection()">Toggle Item Counters</button>  Counter of items for this build: 
-    <div id="item-counters">No Image Loaded yet!</div>
+    <div id="item-counters" class="d-flex flex-wrap">No Image Loaded yet!</div>
   </div>
 
   <div id="item-selections-container">
@@ -808,6 +806,7 @@
 
   <!-- Custom scripts -->
   <script src="js/main.js"></script>
+  <script src="js/pixelmap.js"></script>
   <!-- I can't figure out how to do modules so global it is -->
   <script src="js/modules/utils.js"></script>
   <script src="js/modules/colordb.js"></script>
