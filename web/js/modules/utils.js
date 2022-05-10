@@ -59,6 +59,9 @@ function getDBClosestValue(db, inputColor, colorSpace = "RGB"){
     var dist
     for (var i = 0; i < db.length; i++) {
         var dbColor = db[i][colorSpace]// get val from json/db
+        if (dbColor[0] == inputColor[0] && dbColor[1] == inputColor[1] && dbColor[2] == inputColor[2]) { //its the exact same rgb value as a color, just return that
+            return db[i]
+        }
  
         dist = Math.pow(dbColor[0] - inputColor[0], 2)
         dist += Math.pow(dbColor[1] - inputColor[1], 2)
@@ -74,3 +77,33 @@ function getDBClosestValue(db, inputColor, colorSpace = "RGB"){
 }
 
 // function 
+
+function addToColorExclusion(guid) {
+    if (colorIdsToExclude.indexOf(guid) < -1){
+        colorIdsToExclude.push(guid)
+        console.log("adding from exlcusion: " + guid)
+    }
+}
+
+function removeColorFromExclusion (guid) {
+    if (colorIdsToExclude.indexOf(guid) > -1){
+        colorIdsToExclude.splice(guid, -1)
+        console.log("removing from exlcusion: " + guid)
+    }
+}
+
+// NOTE Optimize this, but not sure what would be the best/fastest approach. 
+function getExcludedColorDB(db, exclusions) {
+    let result = JSON.parse(JSON.stringify(db)) // GOTA DEEPCLONE 
+    for (let i = result.length -1; i >= 0; i--) {
+        let guid = result[i]["GUID"]
+        if (exclusions.includes(guid)){
+            result.splice(i, 1)
+        }
+    }
+    console.log("spliced result")
+    console.log(result)
+    return result
+}
+
+

@@ -7,18 +7,12 @@
 
 // #region Globals
 var colorDB = null
-// var selectedColors = [] // TODO build me when doing color selection feature
-
-// var colorIdsToExclude = []
-
 
 // Loaded image's processed data
 var cachedData = []
 
 // Table previews
 var previewCells = []
-// var previewCellsDims = 5 //parseInt(gridSizeDOM.value)
-
 const maxDims = 500
 
 var showImageInputs = true
@@ -27,7 +21,6 @@ var showCounters = true
 // #endregion
 
 // #region DOM selectors
-
 const chunkInputX = document.getElementById("chunk-input-x")
 const chunkInputY = document.getElementById("chunk-input-y")
 const showGridLinesDOM = document.getElementById("show-grid-lines")
@@ -63,20 +56,6 @@ function Initialize() {
     previewCells = convertToMatrix(previewCells, previewCellsDims)
     console.log("preview grid cells")
     console.log(previewCells)
-
-
-        //i dun like this
-    // hook event listeners to checkboxes
-    // itemSelectionCheckboxes.forEach(function (checkbox) {
-    //     checkbox.addEventListener('change', e => {
-    //         if(e.target.checked){
-    //             // colorIdsToExclude.push(parseInt(e.getAttribute("guid")))
-    //             removeColorFromExclusion(parseInt(e.getAttribute("guid")))
-    //         } else {
-    //             addToColorExclusion(parseInt(e.getAttribute("guid")))
-    //         }
-    //     })
-    // })
 }
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -102,12 +81,15 @@ imageUpload.addEventListener("change", function () {
 
 // #region Core Functions
 function processImage() {
+    itemCountersDOM.innerHTML = ''
     if (imgDom.naturalWidth > maxDims || imgDom.naturalHeight > maxDims) {  
         console.error("Image too large / not supported!")
         window.alert("Image too large / not supported!")
         return
     }
     console.log("Processing currently uploaded image")
+    // NAIVE IMPLEMENTATION OF ITEM COUNTER
+    let counters = {} // kvp 
 
     let previewCellsDims = parseInt(gridSizeDOM.value) > 25 ? 25 : parseInt(gridSizeDOM.value)
     // get the uploaded image from the dom and draw it on a hidden canvas, this is how we get pixel data
@@ -134,11 +116,6 @@ function processImage() {
     outputCanvas.width = canvasPixelWidth
     outputCanvas.height = canvasPixelHeight
 
-    // reset cachedData
-    cachedData = []
-    cachedData = Array.from(Array(height), () => new Array(width))
-    console.log("========== cleared cachedData")
-    console.log(cachedData)
 
     // TODO optimize by just looping pixel data once. 
     // flatten array to rgb array
@@ -176,12 +153,15 @@ function processImage() {
     // TODO figure out why its not updating this again after claling this function after the first time
     colorIdsToExclude.sort()
     let colorDBCache = getExcludedColorDB(colorDB, colorIdsToExclude) // pass colordb to to remove selected items
+   
+    // reset cachedData
+    cachedData = []
+    cachedData = Array.from(Array(height), () => new Array(width))
+    console.log("========== cleared cachedData")
+    console.log(cachedData)
 
-    //========FINAL LOOP======///
-    // NAIVE IMPLEMENTATION OF ITEM COUNTER
-    let counters = {} // kvp 
-
-    // iterate over 2d matrix and print each pixel after mapping
+    //========FINAL LOOP======//
+    // iterate over 2d matrix and print each pixel after mapping 
     for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
             let _r = pixel2dArray[y][x][0] //Math.floor(Math.random() * 256)
@@ -250,117 +230,3 @@ function processImage() {
     // TODO use uri/imagedata encoding, though not sure if thats more performant than looping
     console.log("out canvas pixel dims " + outputCanvas.width / pixelSize + ", " + outputCanvas.height / pixelSize)
 }
-
-function renderPreview() {
-    let chunkX = parseInt(chunkInputX.value) - 1
-    let chunkY = parseInt(chunkInputY.value) - 1
-    let previewCellsDims = parseInt(gridSizeDOM.value) > 25 ? 25 : parseInt(gridSizeDOM.value)
-    for (let y = 0, gy = chunkY * previewCellsDims; y < previewCellsDims; y++, gy++) {
-        for (let x = 0, gx = chunkX * previewCellsDims; x < previewCellsDims; x++, gx++) {
-            if (gy <= cachedData.length -1 && gx <= cachedData[y].length -1) {
-                let selection = cachedData[gy][gx]
-                previewCells[y][x].style.backgroundColor = "rgba(" + trimBrackets(selection['RGB']) + ", 255)"
-                previewCells[y][x].src = selection['imageSource']
-            } else {
-                previewCells[y][x].style.backgroundColor = "transparent"
-                previewCells[y][x].src = "images/misc/empty.png"
-            }
-        }
-    }
-}
-
-
-function generateItemSelection (db) {
-    db.forEach(element => {
-        let container = document.createElement("div")
-        container.setAttribute("class", "item-selection")
-        let checkBox = document.createElement("input")
-        let label = document.createElement("label")
-        checkBox.type = "checkbox"
-        checkBox.checked = true
-        checkBox.setAttribute("name", "item-selection")
-        checkBox.setAttribute("guid", element["GUID"])
-
-        let image = document.createElement("img")
-        image.src = element["imageSource"]
-        image.style.backgroundColor = "rgba(" + trimBrackets(element['RGB']) + ", 255)"
-
-        container.appendChild(image)
-        container.appendChild(checkBox)
-        container.appendChild(label)
-        itemSelectionsDOM.appendChild(container)
-
-        label.appendChild(document.createTextNode(element["Name"]))
-    })
-}
-
-
-function addToColorExclusion(guid) {
-    if (colorIdsToExclude.indexOf(guid) < -1){
-        colorIdsToExclude.push(guid)
-        console.log("adding from exlcusion: " + guid)
-    }
-}
-
-function removeColorFromExclusion (guid) {
-    if (colorIdsToExclude.indexOf(guid) > -1){
-        colorIdsToExclude.splice(guid, -1)
-        console.log("removing from exlcusion: " + guid)
-    }
-}
-
-function getExcludedColorDB(db, exclusions) {
-    let result = db
-    let counter = 0
-    exclusions.forEach(element => {
-        result.splice(element + counter, 1)
-        counter--
-    })
-    console.log("spliced result")
-    console.log(result)
-    return result
-}
-
-
-
-
-///====  togglers
-
-function toggleImages() {
-    if (showImageInputs){
-        imageInputsDOM.setAttribute("style", "display:none !important")
-    } else {
-        imageInputsDOM.setAttribute("style", "")
-    }
-    showImageInputs = !showImageInputs
-}
-
-function toggleColorSelection(){
-    if (showSelections){
-        itemSelectionsDOM.setAttribute("style", "display:none !important")
-    } else {
-        itemSelectionsDOM.setAttribute("style", "")
-    }
-    showSelections = !showSelections
-}
-
-function toggleCounterSelection() {
-    if (showCounters){
-        itemCountersDOM.setAttribute("style", "display:none !important")
-    } else {
-        itemCountersDOM.setAttribute("style", "")
-    }
-    showCounters = !showCounters
-}
-
-// TODO
-function resetPreviews() {
-    // if (!previewCells === undefined || !previewCells.length == 0) {
-    //     console.log("Resetting previews")
-    //     previewCells.forEach(element => {
-    //         element.src = "images/misc/empty.png"
-    //         element.style.backgroundColor = "transparent"
-    //     })
-    // }
-}
-// #endregion
